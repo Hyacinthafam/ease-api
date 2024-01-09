@@ -1,5 +1,6 @@
 <?php
-use App\Models\Product;
+
+use App\Http\Controllers\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/products', function(){
-    return Product::all();
-});
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products', [ProductController::class, 'store']);
+   // return Product::all();
+//});
 
-Route::post('/products', function(){
+/*Route::post('/products', function() {
     //to specify tables
     return Product::create([
         'name' => 'Product one',
@@ -32,9 +34,13 @@ Route::post('/products', function(){
         
         
         
-});
+});*/
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
