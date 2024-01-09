@@ -19,6 +19,7 @@ Route::get('/products', function(){
 });
 
 Route::post('/products', function(){
+    //to specify tables
     return Product::create([
         'name' => 'Product one',
         'slug' => 'product-one',
